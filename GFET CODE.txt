@@ -1,0 +1,47 @@
+go atlas
+#
+mesh space.mult=1.0
+x.mesh loc=0.000 spacing=0.010
+x.mesh loc=0.250 spacing=0.005
+x.mesh loc=0.500 spacing=0.010
+
+y.mesh loc=0.000 spacing=0.010
+y.mesh loc=0.010 spacing=0.002
+y.mesh loc=0.020 spacing=0.005
+y.mesh loc=0.070 spacing=0.010
+
+#
+region number=1 x.min=0.000 x.max=0.500 y.min=0.020 y.max=0.070 material=Silicon
+
+region number=2 x.min=0.000 x.max=0.200 y.min=0.005 y.max=0.020  material=Silicon
+
+region number=3 x.min=0.200 x.max=0.300 y.min=0.005 y.max=0.020 user.material=Graphene
+
+region number=4 x.min=0.300 x.max=0.500 y.min=0.005 y.max=0.020 material=Silicon
+
+region number=5 x.min=0.000 x.max=0.100 y.min=0.0025 y.max=0.005 material=Aluminium
+
+region number=6 x.min=0.175 x.max=0.325 y.min=0.0025 y.max=0.005 user.material=HfO2
+
+region number=7 x.min=0.400 x.max=0.500 y.min=0.0025 y.max=0.005  material=Aluminium
+
+region number=8 x.min=0.175 x.max=0.325 y.min=0.000 y.max=0.0025 material=Aluminium
+
+region number=9 x.min=0.100 x.max=0.325 y.min=0.000 y.max=0.005 material=Air
+
+region number=10 x.min=0.325 x.max=0.400 y.min=0.000 y.max=0.005 material=Air
+
+#1=source #2=drain #3=gate #4=substrate
+electrode name=source number=1 x.min=0.000 x.max=0.100 y.min=0.0025 y.max=0.005
+electrode name=drain number=2 x.min=0.400 x.max=0.500 y.min=0.0025 y.max=0.005
+electrode name=gate number=3 x.min=0.175 x.max=0.325 y.min=0.000 y.max=0.0025
+electrode name=substrate number=4 substrate
+
+#
+material name=HfO2 user.group=insulator user.default=SiO2 eg300=5.5 affinity=3.9 permittivity=20
+material name=Graphene user.group=semiconductor user.default=Ge eg300=0.1 affinity=4.5 permittivity=2
+
+save outf=gfet.str
+tonyplot gfet.str
+
+
